@@ -7,8 +7,11 @@
 
 import UIKit
 
-extension ViewController {
-    func presentAlertController(withTitle title: String?, message: String?, style: UIAlertController.Style) {
+extension MainWeatherViewController {
+    func presentAlertController(withTitle title: String?,
+                                message: String?,
+                                style: UIAlertController.Style,
+                                completionHandler: @escaping (String) -> Void) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         alertController.addTextField { tf in
@@ -23,6 +26,8 @@ extension ViewController {
             
             if cityName != "" {
                 print("search info for the \(cityName)")
+                let city = cityName.split(separator: " ").joined(separator: "%20")
+                completionHandler(city)
             }
         }
         
